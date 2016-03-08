@@ -12,6 +12,8 @@
 
 @property(nonatomic) NSString* name;
 @property(nonatomic) NSString* email;
+@property(nonatomic) NSMutableArray* numbers;
 
 -(id) initNewContactWithName:(NSString *)name withEmail:(NSString *) email;
+-(void) addContactNumberWithNumberType:(NSString *)numberType wittNumber:(NSString *)number;
 @end

@@ -52,6 +52,29 @@ int main(int argc, const char * argv[]) {
         //Create new instance of Contact
         Contact *newContact = [[Contact alloc] initNewContactWithName:name withEmail:email];
         
+        bool addNewNumber = YES;
+        while(addNewNumber){
+          NSString *numberType = [[NSString alloc] init];
+          NSString *number = [[NSString alloc] init];
+          NSString *answer = [[NSString alloc] init];
+          
+          //Get the number and number type
+          numberType = [NSString stringWithString: [inputHandler inputForPrompt:@"Enter the number type(Phone/Mobile/Home): "] ];
+          number = [NSString stringWithString: [inputHandler inputForPrompt:@"Enter the number: "] ];
+          
+          //Save to the contact
+          [newContact addContactNumberWithNumberType:numberType wittNumber:number];
+          
+          //Check if the user wants to add another number
+          answer = [NSString stringWithString: [inputHandler inputForPrompt:@"Do you want to add another number(Y for yes, N for no): "] ];
+          if ([answer isEqualToString:@"Y"] || [answer isEqualToString:@"y"]){
+            addNewNumber = YES;
+          } else if ([answer isEqualToString:@"N"] || [answer isEqualToString:@"n"]){
+            addNewNumber = NO;
+          }
+        }
+        
+        
         //Add the new instance of contact to the contact list
         [mainContactList addContact:newContact];
 

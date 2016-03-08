@@ -12,8 +12,9 @@
 @implementation ContactList
 
 -(id) init{
+  self = [super init];
   
-  self.allContacts = [@[] mutableCopy];
+  _allContacts = [@[] mutableCopy];
   
   return self;
 }
@@ -38,9 +39,29 @@
 -(void)showContactUsingIndex:(int) index{
   if ([self.allContacts count] > 0 && index <= [self.allContacts count] - 1){
     
+    //Display found contact
     Contact *contact = self.allContacts[index];
     NSLog(@"Contact #%d name: %@", index, contact.name);
     NSLog(@"Contact #%d email: %@", index, contact.email);
+    
+    //Loop at Numbers Array
+    for (NSMutableArray *allNumbers in contact.numbers){
+      NSMutableString *completeNumberText = [[NSMutableString alloc] init];
+      int ctr = 1;
+      
+      //Loop at each number
+      for (NSMutableArray *number in allNumbers){
+        [completeNumberText appendString:number];
+        if (ctr == 1){
+          [completeNumberText appendString:@" : "];
+          
+          ctr ++;//Increment ctr
+        }
+      }
+      //Display number
+      NSLog(@"%@",completeNumberText);
+    }
+    
   } else {
     NSLog(@"Contact not found");
   }
@@ -59,6 +80,24 @@
         //Display found contact
         NSLog(@"Contact #%d name: %@", index, contact.name);
         NSLog(@"Contact #%d email: %@", index, contact.email);
+        
+        //Loop at Numbers Array
+        for (NSMutableArray *allNumbers in contact.numbers){
+          NSMutableString *completeNumberText = [[NSMutableString alloc] init];
+          int ctr = 1;
+          
+          //Loop at each number
+          for (NSMutableArray *number in allNumbers){
+            [completeNumberText appendString:number];
+            if (ctr == 1){
+              [completeNumberText appendString:@" : "];
+              
+              ctr ++;//Increment ctr
+            }
+          }
+          //Display number
+          NSLog(@"%@",completeNumberText);
+        }
         nameFound = YES;
         index ++;
       }
