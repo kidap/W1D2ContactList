@@ -18,4 +18,5 @@
 -(void)printContactList;
 -(void)showContactUsingIndex:(int) index;
 -(void)findContact:(NSString *) name;
+-(bool)isEmailAddressInvalid:(NSString *)email;
 @end

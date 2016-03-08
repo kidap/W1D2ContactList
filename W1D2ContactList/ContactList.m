@@ -47,21 +47,47 @@
 }
 
 -(void)findContact:(NSString *) name{
-  bool nameFound = false;
+  int index = 0;
+  bool nameFound = NO;
+  
+  //Check if the there is at least 1 contact and the search string is not initial
   if ([self.allContacts count] > 0  && name !=nil){
     
-    //Contact *contact = self.allContacts[index];
+    //Search for contact name
     for (Contact *contact in self.allContacts){
       if ([contact.name containsString:name]){
+        //Display found contact
         NSLog(@"Contact #%d name: %@", index, contact.name);
         NSLog(@"Contact #%d email: %@", index, contact.email);
         nameFound = YES;
+        index ++;
       }
     }
   }
+  
+  //Display message
   if (nameFound == NO) {
     NSLog(@"Contact not found");
   }
+}
+
+-(bool)isEmailAddressInvalid:(NSString *)email{
+  bool emailInvalid = NO;
+  
+  //Check if the there is at least 1 contact and the search string is not initial
+  if ([self.allContacts count] > 0  && email !=nil){
+    
+    //Search for email address
+    for (Contact *contact in self.allContacts){
+      if ([contact.email isEqualToString:email]){
+        emailInvalid = YES; //email was found
+        NSLog(@"Email already exists. Please use another email.");
+        return emailInvalid;
+      }
+    }
+  }
+  
+  return emailInvalid;
 }
 
 @end
