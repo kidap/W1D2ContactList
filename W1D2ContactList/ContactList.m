@@ -53,7 +53,7 @@
       for (NSMutableArray *number in allNumbers){
         [completeNumberText appendString:number];
         if (ctr == 1){
-          [completeNumberText appendString:@" : "];
+          [completeNumberText appendString:@": "];
           
           ctr ++;//Increment ctr
         }
@@ -90,7 +90,7 @@
           for (NSMutableArray *number in allNumbers){
             [completeNumberText appendString:number];
             if (ctr == 1){
-              [completeNumberText appendString:@" : "];
+              [completeNumberText appendString:@": "];
               
               ctr ++;//Increment ctr
             }
