@@ -36,12 +36,30 @@
 }
 
 -(void)showContactUsingIndex:(int) index{
-  if (index <= [self.allContacts count] - 1){
+  if ([self.allContacts count] > 0 && index <= [self.allContacts count] - 1){
     
     Contact *contact = self.allContacts[index];
     NSLog(@"Contact #%d name: %@", index, contact.name);
     NSLog(@"Contact #%d email: %@", index, contact.email);
   } else {
+    NSLog(@"Contact not found");
+  }
+}
+
+-(void)findContact:(NSString *) name{
+  bool nameFound = false;
+  if ([self.allContacts count] > 0  && name !=nil){
+    
+    //Contact *contact = self.allContacts[index];
+    for (Contact *contact in self.allContacts){
+      if ([contact.name containsString:name]){
+        NSLog(@"Contact #%d name: %@", index, contact.name);
+        NSLog(@"Contact #%d email: %@", index, contact.email);
+        nameFound = YES;
+      }
+    }
+  }
+  if (nameFound == NO) {
     NSLog(@"Contact not found");
   }
 }

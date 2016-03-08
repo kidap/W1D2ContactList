@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
     while (1 == 1){
       
       //Get the input from the user
-      enteredString = [NSString stringWithString: [inputHandler inputForPrompt:@"What would you like do next? [new] - Create a new contact [list] - List all contacts[quit] - Exit Application \n Enter command: "] ];
+      enteredString = [NSString stringWithString: [inputHandler inputForPrompt:@"What would you like do next? [new] - Create a new contact, [list] - List all contacts, [show <#(index) of contact>] Show contact using the index, [find <search>] Find the contact, [quit] - Exit Application \n Enter command: "] ];
       
       //Create Contact
       if ([enteredString isEqualToString:@"new"]){
@@ -52,11 +52,28 @@ int main(int argc, const char * argv[]) {
         
       // Show
       } else if ([enteredString containsString:@"show"]){
-        
         //Get the index from the entered string
+        NSString *indexString =[NSString stringWithString:[enteredString stringByReplacingOccurrencesOfString:@"show" withString:@""] ];
+        indexString = [ indexString stringByReplacingOccurrencesOfString:@" " withString:@""];
         
-        //Show the contact using the index
-        [mainContactList showContactUsingIndex:0];
+        //Check if only numbers where entered
+        if (1 ==1){
+          int index = [indexString intValue];
+          
+          //Show the contact using the index
+          [mainContactList showContactUsingIndex:index];
+        }
+        
+      // Find
+      } else if ([enteredString containsString:@"find"]){
+        
+        //Get the name from the entered string
+        NSString *nameToSearch =[NSString stringWithString:[enteredString stringByReplacingOccurrencesOfString:@"find" withString:@""] ];
+        nameToSearch = [ nameToSearch stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        //Search from the contact
+        [mainContactList findContact:nameToSearch];
+        
       } else {
         if ([enteredString isEqualToString:@""]){
           //Do nothing if user just presses enter
